@@ -1,7 +1,7 @@
 <?php
   namespace framework\engine\provider;
 
-  interface ProviderInterface
+  interface interfaceProvider
   {
     public function register($di);
     public function boot($di);

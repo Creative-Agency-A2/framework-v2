@@ -1,9 +1,11 @@
 <?php
   namespace framework\engine\provider;
 
-  class provider implements \framework\engine\provider\ProviderInterface
+  class provider implements \framework\engine\provider\interfaceProvider
   {
     protected $config = [];
+
+    public $priority = 1;
 
     public function __construct()
     {

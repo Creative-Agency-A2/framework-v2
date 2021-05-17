@@ -16,7 +16,7 @@ if (!defined('__DIR_LIBRARIES__')){
     define('__DIR_LIBRARIES__', __PATH__ . '/framework/libraries/');
 }
 if (!defined('__DIR_LOGS__')){
-    define('__DIR_LOGS__', __DIR_STORAGE__ . 'logs/');
+    define('__DIR_LOGS__', __PATH__ . 'logs/');
 }
 if (!defined('__EX_LOG__')){
     define('__EX_LOG__', false);

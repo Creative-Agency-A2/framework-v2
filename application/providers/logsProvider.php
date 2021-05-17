@@ -1,5 +1,5 @@
 <?php 
-    namespace framework\providers;
+    namespace application\providers;
 
     class logsProvider extends \framework\engine\provider\provider
     {

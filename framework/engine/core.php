@@ -27,35 +27,30 @@ class core
             return $logger;
         });
 
+        $di->set('localStorage', function($obj, $params){
+            $localStorage = new \framework\libraries\storage\drivers\local();
+            return new \framework\libraries\storage\storage( $localStorage );
+        });
+
+        $di->set('response', function ($obj, $params) {
+            return new \framework\libraries\http\response();
+        });
+
+        $di->set('loader', function ($obj, $params) {
+            return new loader($obj);
+        });
+
         $exceptionHandler = new \framework\libraries\exception\handler\exceptionHandler($di->get('exception_logger'));
         $exception = new \framework\libraries\exception\ExceptionHandler($exceptionHandler);
         $exception->init();
 
-        $this->loadProviders($di);
+        new providers($di);
+
+        //$http = $di->get('http');
+        //$response = $http->request('GET', 'https://moe-pravo.bitrix24.ru/rest/10/zx5vg41xa7n2ho08/crm.address.fields')->getBody();
+
     }
 
-    function loadProviders($di)
-    {
-        $dir = scandir(__PATH__ . '/framework/providers');
-        $dir = array_splice($dir, 2);
-
-        for ($i = 0, $quantity = count($dir); $i < $quantity; $i++) {
-            $name = '\\framework\providers\\' . explode('.', $dir[$i])[0];
-            $entity = new $name();
-            $entity->register($di);
-            $entity->boot($di);
-        }
-
-        $dir = scandir(__DIR_PROVIDERS__);
-        $dir = array_splice($dir, 2);
-
-        for ($i = 0, $quantity = count($dir); $i < $quantity; $i++) {
-            $name = '\\application\providers\\' . explode('.', $dir[$i])[0];
-            $entity = new $name();
-            $entity->register($di);
-            $entity->boot($di);
-        }
-    }
     function includeApplicationConfig($filename, $context = null) {
         if(file_exists(__DIR_APP__ . $filename))
             return require_once __DIR_APP__ . $filename;
