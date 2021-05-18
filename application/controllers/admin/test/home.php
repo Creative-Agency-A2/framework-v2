@@ -1,10 +1,10 @@
 <?php
-    namespace application\controllers;
+    namespace application\controllers\admin\test;
 
     class home extends \framework\engine\controller
     {
         public function index()
         {
-            $this->controller->admin->test->home->index();
+            $this->model->admin->test->home->test();
         }
     }
