@@ -5,7 +5,9 @@
  */
 namespace framework\libraries\http;
 
-class uri implements \framework\libraries\http\interfaces\UriInterface {
+use framework\libraries\http\interfaces\UriInterface;
+
+class Uri implements UriInterface {
 
     private const SCHEMES = ['http' => 80, 'https' => 443];
 
